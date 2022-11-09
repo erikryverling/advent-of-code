@@ -10,7 +10,7 @@ repositories {
 }
 
 application {
-    mainClass.set("se.yverling.advent._2020.CalendarKt")
+    mainClass.set("se.yverling.advent._2022.CalendarKt")
 }
 
 dependencies {
