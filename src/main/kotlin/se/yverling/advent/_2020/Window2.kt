@@ -41,7 +41,8 @@ object Window2 : Window {
             val password = entry.substringAfterLast(' ')
 
             if (password[lowerPosition - 1] == character && password[upperPosition - 1] != character ||
-                    password[lowerPosition - 1] != character && password[upperPosition - 1] == character) {
+                password[lowerPosition - 1] != character && password[upperPosition - 1] == character
+            ) {
                 numberOfCorrectPasswords++
             }
         }
@@ -49,7 +50,7 @@ object Window2 : Window {
     }
 
     private fun readDatabase() {
-        File("$RES_FOLDER/window-2").forEachLine { row ->
+        reader.read(2).forEachLine { row ->
             dataBase.add(row)
         }
     }

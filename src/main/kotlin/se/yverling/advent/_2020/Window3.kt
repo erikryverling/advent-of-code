@@ -1,7 +1,6 @@
 package se.yverling.advent._2020
 
 import se.yverling.advent.Window
-import java.io.File
 import kotlin.math.ceil
 
 object Window3 : Window {
@@ -38,7 +37,7 @@ object Window3 : Window {
     private fun initMapMetaData() {
         var currentNumberOfRows = 0
 
-        File("$RES_FOLDER/window-3").forEachLine { row ->
+        reader.read(3).forEachLine { row ->
             if (currentNumberOfRows == 0) {
                 rowLength = row.length
             }
@@ -53,7 +52,7 @@ object Window3 : Window {
 
     private fun buildMap() {
         var fileRow = 0
-        File("$RES_FOLDER/window-3").forEachLine { row ->
+        reader.read(3).forEachLine { row ->
             for (offset in 0 until rowLength * repetitions step rowLength) {
                 row.forEachIndexed { fileColumn, symbol ->
                     map[Pair(offset + fileColumn, fileRow)] = symbol

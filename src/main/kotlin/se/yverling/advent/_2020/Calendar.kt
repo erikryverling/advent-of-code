@@ -1,6 +1,8 @@
 package se.yverling.advent._2020
 
-const val RES_FOLDER = "src/main/res/2020/"
+import se.yverling.advent.WindowFileReader
+
+val reader = WindowFileReader("src/main/res/2020/")
 
 fun main() {
     Window1()

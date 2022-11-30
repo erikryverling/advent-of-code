@@ -1,9 +1,8 @@
 package se.yverling.advent._2020
 
 import se.yverling.advent.Window
-import java.io.File
 
-object Window1: Window {
+object Window1 : Window {
     override val windowNumber: Int = 1
 
     private var expenseReport = mutableListOf<Int>()
@@ -41,7 +40,7 @@ object Window1: Window {
     }
 
     private fun readExpenseReport() {
-        File("$RES_FOLDER/window-1").forEachLine { row ->
+        reader.read(1).forEachLine { row ->
             expenseReport.add(row.toInt())
         }
     }
