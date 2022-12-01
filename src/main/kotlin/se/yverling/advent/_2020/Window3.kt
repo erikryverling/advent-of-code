@@ -1,12 +1,13 @@
 package se.yverling.advent._2020
 
 import se.yverling.advent.Window
+import se.yverling.advent.WindowFileReader
 import kotlin.math.ceil
 
-object Window3 : Window {
+class Window3(reader: WindowFileReader) : Window(reader) {
     override val windowNumber = 3
 
-    private const val MAX_NUMBER_OF_STEPS = 7
+    private val max_number_of_steps = 7
 
     // Map meta data
     private var numberOfRows: Int = -1
@@ -37,7 +38,7 @@ object Window3 : Window {
     private fun initMapMetaData() {
         var currentNumberOfRows = 0
 
-        reader.read(3).forEachLine { row ->
+        reader.read().forEachLine { row ->
             if (currentNumberOfRows == 0) {
                 rowLength = row.length
             }
@@ -47,12 +48,12 @@ object Window3 : Window {
         numberOfRows = currentNumberOfRows
 
         // Round up
-        repetitions = ceil((MAX_NUMBER_OF_STEPS.toFloat() * numberOfRows.toFloat()) / rowLength.toFloat()).toInt()
+        repetitions = ceil((max_number_of_steps.toFloat() * numberOfRows.toFloat()) / rowLength.toFloat()).toInt()
     }
 
     private fun buildMap() {
         var fileRow = 0
-        reader.read(3).forEachLine { row ->
+        reader.read().forEachLine { row ->
             for (offset in 0 until rowLength * repetitions step rowLength) {
                 row.forEachIndexed { fileColumn, symbol ->
                     map[Pair(offset + fileColumn, fileRow)] = symbol

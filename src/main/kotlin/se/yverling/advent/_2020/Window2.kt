@@ -1,9 +1,9 @@
 package se.yverling.advent._2020
 
 import se.yverling.advent.Window
-import java.io.File
+import se.yverling.advent.WindowFileReader
 
-object Window2 : Window {
+class Window2(reader: WindowFileReader) : Window(reader) {
     override val windowNumber: Int = 2
 
     private var numberOfCorrectPasswords = 0
@@ -50,7 +50,7 @@ object Window2 : Window {
     }
 
     private fun readDatabase() {
-        reader.read(2).forEachLine { row ->
+        reader.read().forEachLine { row ->
             dataBase.add(row)
         }
     }

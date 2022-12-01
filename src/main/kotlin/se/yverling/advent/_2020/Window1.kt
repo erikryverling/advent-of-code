@@ -1,8 +1,9 @@
 package se.yverling.advent._2020
 
 import se.yverling.advent.Window
+import se.yverling.advent.WindowFileReader
 
-object Window1 : Window {
+class Window1(reader: WindowFileReader) : Window(reader) {
     override val windowNumber: Int = 1
 
     private var expenseReport = mutableListOf<Int>()
@@ -40,7 +41,7 @@ object Window1 : Window {
     }
 
     private fun readExpenseReport() {
-        reader.read(1).forEachLine { row ->
+        reader.read().forEachLine { row ->
             expenseReport.add(row.toInt())
         }
     }

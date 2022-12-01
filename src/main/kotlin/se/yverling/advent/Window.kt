@@ -1,12 +1,12 @@
 package se.yverling.advent
 
-interface Window {
-    val windowNumber: Int
+abstract class Window(val reader: WindowFileReader) {
+    abstract val windowNumber: Int
 
-    fun part1()
-    fun part2()
+    abstract fun part1()
+    abstract fun part2()
 
-    operator fun invoke() {
+    fun open() {
         println("*** Window $windowNumber ***")
         part1()
         println("---")
