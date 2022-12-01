@@ -8,3 +8,10 @@
  */
 
 rootProject.name = "Advent of Code"
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
