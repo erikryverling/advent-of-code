@@ -13,7 +13,7 @@ class Window2(reader: WindowFileReader) : Window(reader) {
         readDatabase()
     }
 
-    override fun part1() {
+    override fun part1(): String {
         dataBase.forEach { entry ->
             // TODO Use regexp?
             val lowerLimit = entry.substringBefore('-').toInt()
@@ -27,10 +27,10 @@ class Window2(reader: WindowFileReader) : Window(reader) {
                 numberOfCorrectPasswords++
             }
         }
-        println("Number of correct passwords: $numberOfCorrectPasswords")
+        return "Number of correct passwords: $numberOfCorrectPasswords"
     }
 
-    override fun part2() {
+    override fun part2(): String {
         numberOfCorrectPasswords = 0
 
         dataBase.forEach { entry ->
@@ -46,7 +46,7 @@ class Window2(reader: WindowFileReader) : Window(reader) {
                 numberOfCorrectPasswords++
             }
         }
-        println("Number of correct passwords: $numberOfCorrectPasswords")
+        return "Number of correct passwords: $numberOfCorrectPasswords"
     }
 
     private fun readDatabase() {

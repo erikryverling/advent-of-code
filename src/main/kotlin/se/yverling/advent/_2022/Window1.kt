@@ -6,12 +6,11 @@ import se.yverling.advent.WindowFileReader
 class Window1(reader: WindowFileReader) : Window(reader) {
     override val windowNumber: Int = 1
 
-    override fun part1() {
+    override fun part1(): Int {
         var maxNumberOfCalories = 0
         var currentSum = 0
 
         reader.read().forEachLine { line ->
-
             if (line.isEmpty()) {
                 if (currentSum > maxNumberOfCalories) {
                     maxNumberOfCalories = currentSum
@@ -22,15 +21,14 @@ class Window1(reader: WindowFileReader) : Window(reader) {
             }
         }
 
-        println(maxNumberOfCalories)
+        return maxNumberOfCalories
     }
 
-    override fun part2() {
+    override fun part2(): Int {
         var topThreeNumberOfCalories = mutableListOf<Int>()
         var currentSum = 0
 
         reader.read().forEachLine { line ->
-
             if (line.isEmpty()) {
                 topThreeNumberOfCalories = updateList(topThreeNumberOfCalories, currentSum)
                 currentSum = 0
@@ -41,7 +39,7 @@ class Window1(reader: WindowFileReader) : Window(reader) {
 
         topThreeNumberOfCalories = updateList(topThreeNumberOfCalories, currentSum)
 
-        println(topThreeNumberOfCalories.sum())
+        return topThreeNumberOfCalories.sum()
     }
 
     private fun updateList(

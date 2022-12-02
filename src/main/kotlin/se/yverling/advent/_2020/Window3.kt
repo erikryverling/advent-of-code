@@ -21,18 +21,18 @@ class Window3(reader: WindowFileReader) : Window(reader) {
         buildMap()
     }
 
-    override fun part1() {
-        println("Number of trees: ${runSlope(3, 1)}")
+    override fun part1(): String {
+        return "Number of trees: ${runSlope(3, 1)}"
     }
 
-    override fun part2() {
+    override fun part2(): String {
         var product = runSlope(1, 1)
         product *= runSlope(3, 1)
         product *= runSlope(5, 1)
         product *= runSlope(7, 1)
         product *= runSlope(1, 2)
 
-        println("Product: $product")
+        return "Product: $product"
     }
 
     private fun initMapMetaData() {

@@ -12,19 +12,19 @@ class Window1(reader: WindowFileReader) : Window(reader) {
         readExpenseReport()
     }
 
-    override fun part1() {
+    override fun part1(): String {
         expenseReport.forEachIndexed { outerIndex, outerElement ->
             expenseReport.subList(outerIndex + 1, expenseReport.size).forEach { innerElement ->
                 if (outerElement + innerElement == 2020) {
                     val product = outerElement * innerElement
-                    println("$outerElement * $innerElement == $product")
-                    return
+                    return "$outerElement * $innerElement == $product"
                 }
             }
         }
+        return "Error: Something went wrong"
     }
 
-    override fun part2() {
+    override fun part2(): String {
         expenseReport.forEachIndexed { firstLevelIndex, firstLevelElement ->
             val secondLevelList = expenseReport.subList(firstLevelIndex + 1, expenseReport.size)
 
@@ -32,12 +32,12 @@ class Window1(reader: WindowFileReader) : Window(reader) {
                 expenseReport.subList(secondLevelIndex + 1, secondLevelList.size).forEach { thirdLevelElement ->
                     if (firstLevelElement + secondLevelElement + thirdLevelElement == 2020) {
                         val product = firstLevelElement * secondLevelElement * thirdLevelElement
-                        println("$firstLevelElement * $secondLevelElement * $thirdLevelElement == $product")
-                        return
+                        return "$firstLevelElement * $secondLevelElement * $thirdLevelElement == $product"
                     }
                 }
             }
         }
+        return "Error: Something went wrong"
     }
 
     private fun readExpenseReport() {
