@@ -5,7 +5,9 @@ import se.yverling.advent.WindowFileReader
 const val RESOURCE_FOLDER = "src/main/res/2020/"
 
 fun main() {
-    Window1(WindowFileReader(RESOURCE_FOLDER, 1)).open()
-    Window2(WindowFileReader(RESOURCE_FOLDER, 2)).open()
-    Window3(WindowFileReader(RESOURCE_FOLDER, 3)).open()
+    val reader = WindowFileReader(RESOURCE_FOLDER)
+
+    Window1(reader).open()
+    Window2(reader).open()
+    Window3(reader).open()
 }

@@ -4,9 +4,7 @@ import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 import kotlin.math.ceil
 
-class Window3(reader: WindowFileReader) : Window(reader) {
-    override val windowNumber = 3
-
+class Window3(reader: WindowFileReader) : Window(reader, 3) {
     private val max_number_of_steps = 7
 
     // Map meta data

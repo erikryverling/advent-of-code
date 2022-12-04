@@ -5,6 +5,11 @@ import se.yverling.advent.WindowFileReader
 const val RESOURCE_FOLDER = "src/main/res/2022/"
 
 fun main() {
-    Window1(WindowFileReader(RESOURCE_FOLDER, 1)).open()
-    Window2(WindowFileReader(RESOURCE_FOLDER, 2)).open()
+    val reader = WindowFileReader(RESOURCE_FOLDER)
+
+    // TODO Perhaps interate over all classes in _2022 folder?
+    Window1(reader).open()
+    Window2(reader).open()
+    Window3(reader).open()
+    Window4(reader).open()
 }

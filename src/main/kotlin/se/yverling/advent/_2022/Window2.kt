@@ -3,8 +3,7 @@ package se.yverling.advent._2022
 import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 
-class Window2(reader: WindowFileReader) : Window(reader) {
-    override val windowNumber: Int = 2
+class Window2(reader: WindowFileReader) : Window(reader, 2) {
 
     // A / X = Rock
     // B / Y = Paper
@@ -70,6 +69,6 @@ class Window2(reader: WindowFileReader) : Window(reader) {
 
             totalScore += winningScore[move]!! + moveScore[myMove]!!
         }
-        return totalScore 
+        return totalScore
     }
 }

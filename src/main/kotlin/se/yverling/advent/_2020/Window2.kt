@@ -3,9 +3,7 @@ package se.yverling.advent._2020
 import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 
-class Window2(reader: WindowFileReader) : Window(reader) {
-    override val windowNumber: Int = 2
-
+class Window2(reader: WindowFileReader) : Window(reader, 2) {
     private var numberOfCorrectPasswords = 0
     private var dataBase = mutableListOf<String>()
 
