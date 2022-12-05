@@ -6,7 +6,7 @@ import se.yverling.advent.WindowFileReader
 class Window4(reader: WindowFileReader) : Window(reader, 4) {
     private val regex = Regex("(\\d*)-(\\d*),(\\d*)-(\\d*)")
 
-    override fun part1(): Int {
+    override fun part1(): String {
         var fullyContains = 0
 
         reader.read().forEachLine { line ->
@@ -16,17 +16,17 @@ class Window4(reader: WindowFileReader) : Window(reader, 4) {
             val secondElfBounds = Pair(groupValues[3].toInt(), groupValues[4].toInt())
 
             // TOOD Use range from kotlin?
-            if ((firstElfBounds.first <= secondElfBounds.first && firstElfBounds.second >= secondElfBounds.second)
-                || (secondElfBounds.first <= firstElfBounds.first && secondElfBounds.second >= firstElfBounds.second)
+            if ((firstElfBounds.first <= secondElfBounds.first && firstElfBounds.second >= secondElfBounds.second) ||
+                (secondElfBounds.first <= firstElfBounds.first && secondElfBounds.second >= firstElfBounds.second)
             ) {
                 fullyContains++
             }
         }
 
-        return fullyContains
+        return fullyContains.toString()
     }
 
-    override fun part2(): Int {
+    override fun part2(): String {
         var noOverlap = 0
         var totalLines = 0
 
@@ -42,6 +42,6 @@ class Window4(reader: WindowFileReader) : Window(reader, 4) {
                 noOverlap++
             }
         }
-        return totalLines - noOverlap
+        return (totalLines - noOverlap).toString()
     }
 }

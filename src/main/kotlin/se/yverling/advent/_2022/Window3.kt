@@ -4,7 +4,7 @@ import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 
 class Window3(reader: WindowFileReader) : Window(reader, 3) {
-    override fun part1(): Int {
+    override fun part1(): String {
         var sumOfPriorities = 0
         reader.read().forEachLine { line ->
             val firstCompartment = (line.substring(0, (line.length / 2))).toSet()
@@ -16,10 +16,10 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
                 }
             }
         }
-        return sumOfPriorities
+        return sumOfPriorities.toString()
     }
 
-    override fun part2(): Int {
+    override fun part2(): String {
         var lineNumber = 0
         var sumOfPriorities = 0
 
@@ -40,7 +40,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
                 group = mutableListOf()
             }
         }
-        return sumOfPriorities
+        return sumOfPriorities.toString()
     }
 
     private fun priority(item: Char): Int {

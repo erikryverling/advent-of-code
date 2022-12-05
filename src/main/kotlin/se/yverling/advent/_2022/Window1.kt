@@ -4,7 +4,7 @@ import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 
 class Window1(reader: WindowFileReader) : Window(reader, 1) {
-    override fun part1(): Int {
+    override fun part1(): String {
         var maxNumberOfCalories = 0
         var currentSum = 0
 
@@ -19,10 +19,10 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
             }
         }
 
-        return maxNumberOfCalories
+        return maxNumberOfCalories.toString()
     }
 
-    override fun part2(): Int {
+    override fun part2(): String {
         var topThreeNumberOfCalories = mutableListOf<Int>()
         var currentSum = 0
 
@@ -37,7 +37,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
 
         topThreeNumberOfCalories = updateList(topThreeNumberOfCalories, currentSum)
 
-        return topThreeNumberOfCalories.sum()
+        return topThreeNumberOfCalories.sum().toString()
     }
 
     private fun updateList(

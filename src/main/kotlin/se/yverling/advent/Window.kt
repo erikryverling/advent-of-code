@@ -5,8 +5,8 @@ abstract class Window(val reader: WindowFileReader, private val windowNumber: In
         reader.windowNumber = windowNumber
     }
 
-    abstract fun part1(): Any
-    abstract fun part2(): Any
+    abstract fun part1(): String
+    abstract fun part2(): String
 
     fun open() {
         println("*** Window $windowNumber ***")

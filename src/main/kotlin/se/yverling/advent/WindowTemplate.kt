@@ -1,17 +1,17 @@
 package se.yverling.advent
 
 class WindowTemplate(reader: WindowFileReader) : Window(reader, -1) {
-    override fun part1(): Int {
+    override fun part1(): String {
         reader.read(true).forEachLine { line ->
 
         }
-        return -1
+        return ""
     }
 
-    override fun part2(): Int {
+    override fun part2(): String {
         reader.read(true).forEachLine { line ->
 
         }
-        return -1
+        return ""
     }
 }

@@ -12,4 +12,5 @@ fun main() {
     Window2(reader).open()
     Window3(reader).open()
     Window4(reader).open()
+    Window5(reader).open()
 }

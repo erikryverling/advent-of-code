@@ -22,7 +22,7 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
 
     private val moveScore: Map<Char, Int> = mapOf('X' to 1, 'Y' to 2, 'Z' to 3)
 
-    override fun part1(): Int {
+    override fun part1(): String {
         var totalScore = 0
 
         reader.read().forEachLine { line ->
@@ -33,10 +33,10 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
 
             totalScore += winningScore[move]!! + moveScore[myMove]!!
         }
-        return totalScore
+        return totalScore.toString()
     }
 
-    override fun part2(): Int {
+    override fun part2(): String {
         var totalScore = 0
 
         // A / X = Rock
@@ -69,6 +69,6 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
 
             totalScore += winningScore[move]!! + moveScore[myMove]!!
         }
-        return totalScore
+        return totalScore.toString()
     }
 }
