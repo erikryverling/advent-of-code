@@ -2,7 +2,8 @@ package se.yverling.advent
 
 import java.io.File
 
-class WindowFileReader(private val resourceFolder: String) {
+class WindowFileReader(year: Int) {
+    private val resourceFolder = "src/main/res/$year"
     var windowNumber: Int = -1
 
     fun read(test: Boolean = false): File {

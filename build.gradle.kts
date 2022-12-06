@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.*
-
 plugins {
     application
     alias(libs.plugins.kotlin)
@@ -15,8 +13,9 @@ application {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflection)
 }
 
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
