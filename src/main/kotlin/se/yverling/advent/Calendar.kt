@@ -6,12 +6,14 @@ import kotlin.reflect.full.primaryConstructor
 internal const val DECEMBER = 11
 
 fun main() {
-    openCalendar(2022, todayOnly = true)
+    openCalendar(2022)
 }
 
-fun openCalendar(year: Int, todayOnly: Boolean = false) {
+fun openCalendar(year: Int, window: Int? = null, today: Boolean = false) {
     val reader = WindowFileReader(year)
-    if (todayOnly) {
+    if (window != null) {
+        openWindow(year, window, reader)
+    } else if (today) {
         val calendar = Calendar.getInstance()
 
         val dayOfMonth = calendar[Calendar.DAY_OF_MONTH]
@@ -30,14 +32,18 @@ fun openCalendar(year: Int, todayOnly: Boolean = false) {
         println()
 
         for (windowNumber in 1..24) {
-            try {
-                val kClass = Class.forName("se.yverling.advent._$year.Window$windowNumber").kotlin
-                val primaryConstructor = kClass.primaryConstructor
-                val instance: Window = primaryConstructor!!.call(reader) as Window
-                instance.open()
-            } catch (e: ClassNotFoundException) {
-                // Ignore widows not implemented yet
-            }
+            openWindow(year, windowNumber, reader)
         }
+    }
+}
+
+private fun openWindow(year: Int, windowNumber: Int, reader: WindowFileReader) {
+    try {
+        val kClass = Class.forName("se.yverling.advent._$year.Window$windowNumber").kotlin
+        val primaryConstructor = kClass.primaryConstructor
+        val instance: Window = primaryConstructor!!.call(reader) as Window
+        instance.open()
+    } catch (e: ClassNotFoundException) {
+        // Ignore widows not implemented yet
     }
 }

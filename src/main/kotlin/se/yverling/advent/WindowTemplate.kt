@@ -8,13 +8,13 @@ class WindowTemplate(reader: WindowFileReader) : Window(reader, -1) {
         reader.read(true).forEachLine { line ->
 
         }
-        return ""
+        return "<Not implemented>"
     }
 
     override fun part2(): String {
         reader.read(true).forEachLine { line ->
 
         }
-        return ""
+        return "<Not implemented>"
     }
 }
