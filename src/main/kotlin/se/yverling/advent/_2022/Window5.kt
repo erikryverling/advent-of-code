@@ -5,7 +5,7 @@ import se.yverling.advent.WindowFileReader
 import java.util.*
 
 class Window5(reader: WindowFileReader) : Window(reader, 5) {
-    private val regex = Regex("move (\\d*) from (\\d) to (\\d)")
+    private val inputMatcher = Regex("move (\\d*) from (\\d) to (\\d)")
     // TODO Parse initial state of stacks? :fist:
 
     // Test
@@ -31,7 +31,7 @@ class Window5(reader: WindowFileReader) : Window(reader, 5) {
         val stacks = copyInputStack()
 
         reader.read().forEachLine { line ->
-            val groupValues = regex.find(line)?.groupValues
+            val groupValues = inputMatcher.find(line)?.groupValues
 
             // On a move row
             if (groupValues != null) {
@@ -53,7 +53,7 @@ class Window5(reader: WindowFileReader) : Window(reader, 5) {
         val stacks = copyInputStack()
 
         reader.read().forEachLine { line ->
-            val groupValues = regex.find(line)?.groupValues
+            val groupValues = inputMatcher.find(line)?.groupValues
 
             // TODO Duplicates
             // On a move row

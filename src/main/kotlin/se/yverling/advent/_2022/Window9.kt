@@ -13,7 +13,7 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
 
     private var visitedTailPositions = mutableSetOf<Pair<Int, Int>>()
 
-    private val directionAndStepsRegEx = Regex("^(\\w) (\\d+)$")
+    private val inputMatcher = Regex("^(\\w) (\\d+)$")
 
     override fun part1(): String {
         rope = mutableListOf(Pair(11, 15), Pair(11, 15))
@@ -48,8 +48,8 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
         renderInitialState(isTest)
 
         reader.read(isTest).forEachLine { line ->
-            val direction = directionAndStepsRegEx.find(line)?.groupValues!![1].toCharArray()[0]
-            val steps = directionAndStepsRegEx.find(line)?.groupValues!![2].toInt()
+            val direction = inputMatcher.find(line)?.groupValues!![1].toCharArray()[0]
+            val steps = inputMatcher.find(line)?.groupValues!![2].toInt()
 
             renderStepHeader(isTest, direction, steps)
 

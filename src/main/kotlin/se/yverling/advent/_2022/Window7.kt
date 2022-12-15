@@ -6,10 +6,10 @@ import se.yverling.advent.WindowFileReader
 internal const val FOLDER_LIMIT = 100000
 
 class Window7(reader: WindowFileReader) : Window(reader, 7) {
-    private val changeDir = Regex("^\\$ cd (\\w+|\\W+)\$")
-    private val listFiles = Regex("^\\\$ ls$")
-    private val file = Regex("^(\\d+) (\\w+\\.*\\w*)$")
-    private val directory = Regex("^dir (\\w+)$")
+    private val changeDirMatcher = Regex("^\\$ cd (\\w+|\\W+)\$")
+    private val listFilesMatcher = Regex("^\\\$ ls$")
+    private val fileMatcher = Regex("^(\\d+) (\\w+\\.*\\w*)$")
+    private val directoryMatcher = Regex("^dir (\\w+)$")
 
     private var sizeOfDirsBelowFolderLimit = 0L
     private var deletableDirs = mutableListOf<Long>()
@@ -20,25 +20,25 @@ class Window7(reader: WindowFileReader) : Window(reader, 7) {
 
         reader.read().forEachLine { line ->
             when {
-                file.matches(line) -> {
-                    val size = file.find(line)?.groupValues!![1].toLong()
-                    val name = file.find(line)?.groupValues!![2]
+                fileMatcher.matches(line) -> {
+                    val size = fileMatcher.find(line)?.groupValues!![1].toLong()
+                    val name = fileMatcher.find(line)?.groupValues!![2]
 
                     currentNode.addChild(Node(name, size))
                 }
 
-                directory.matches(line) -> {
-                    val name = directory.find(line)?.groupValues!![1]
+                directoryMatcher.matches(line) -> {
+                    val name = directoryMatcher.find(line)?.groupValues!![1]
 
                     currentNode.addChild(Node(name, 0))
                 }
 
-                listFiles.matches(line) -> {
+                listFilesMatcher.matches(line) -> {
                     // Do nothing
                 }
 
-                changeDir.matches(line) -> {
-                    when (val name = changeDir.find(line)?.groupValues!![1]) {
+                changeDirMatcher.matches(line) -> {
+                    when (val name = changeDirMatcher.find(line)?.groupValues!![1]) {
                         "/" -> {
                             // Do nothing (or maybe init here)
                         }
