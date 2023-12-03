@@ -47,7 +47,7 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
     private fun moveRope() {
         renderInitialState(isTest)
 
-        reader.read(isTest).forEachLine { line ->
+        reader.read(if (isTest) 1 else 0).forEachLine { line ->
             val direction = inputMatcher.find(line)?.groupValues!![1].toCharArray()[0]
             val steps = inputMatcher.find(line)?.groupValues!![2].toInt()
 
@@ -73,12 +73,15 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
             'R' -> {
                 rope[0] = Pair(rope[0].first + 1, rope[0].second)
             }
+
             'L' -> {
                 rope[0] = Pair(rope[0].first - 1, rope[0].second)
             }
+
             'U' -> {
                 rope[0] = Pair(rope[0].first, rope[0].second - 1)
             }
+
             'D' -> {
                 rope[0] = Pair(rope[0].first, rope[0].second + 1)
             }
