@@ -36,7 +36,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
     private fun initMapMetaData() {
         var currentNumberOfRows = 0
 
-        reader.read().forEachLine { row ->
+        reader.file().forEachLine { row ->
             if (currentNumberOfRows == 0) {
                 rowLength = row.length
             }
@@ -51,7 +51,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
 
     private fun buildMap() {
         var fileRow = 0
-        reader.read().forEachLine { row ->
+        reader.file().forEachLine { row ->
             for (offset in 0 until rowLength * repetitions step rowLength) {
                 row.forEachIndexed { fileColumn, symbol ->
                     map[Pair(offset + fileColumn, fileRow)] = symbol

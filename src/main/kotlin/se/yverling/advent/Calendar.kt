@@ -6,8 +6,7 @@ import kotlin.reflect.full.primaryConstructor
 internal const val DECEMBER = 11
 
 fun main() {
-    openCalendar(2020)
-    openCalendar(2022)
+    openCalendar(2023, window = 2)
 }
 
 fun openCalendar(year: Int, window: Int? = null, today: Boolean = false) {

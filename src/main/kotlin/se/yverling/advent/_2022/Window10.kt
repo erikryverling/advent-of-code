@@ -14,7 +14,7 @@ class Window10(reader: WindowFileReader) : Window(reader, 10) {
     private val pixels = mutableListOf<Char>()
 
     override fun part1(): String {
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             when (inputMatcher.find(line)?.groupValues!![1]) {
                 "addx" -> {
                     val value = inputMatcher.find(line)?.groupValues!![2].toInt()

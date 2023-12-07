@@ -6,7 +6,7 @@ import se.yverling.advent.WindowFileReader
 class Window3(reader: WindowFileReader) : Window(reader, 3) {
     override fun part1(): String {
         var sumOfPriorities = 0
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             val firstCompartment = (line.substring(0, (line.length / 2))).toSet()
             val secondCompartment = (line.substring((line.length / 2), line.length)).toSet()
 
@@ -25,7 +25,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
 
         var group = mutableListOf<Set<Char>>()
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             lineNumber++
 
             group.add(line.toSet())

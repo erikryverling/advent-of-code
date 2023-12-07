@@ -4,9 +4,8 @@ import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 
 class Window2(reader: WindowFileReader) : Window(reader, 2) {
-    override fun part1(): String {
-        var sum = 0
-        reader.read().forEachLine { line ->
+    override fun part1(): Any {
+        return reader.readLines().sumOf { line ->
             val matcher = Regex("^Game (\\d+): (.*)\$")
 
             val gameId = matcher.find(line)!!.groupValues[1].toInt()
@@ -14,16 +13,12 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
             val setsAsString = matcher.find(line)!!.groupValues[2]
             val sets = setsAsString.split(";")
 
-            if (allSetsValid(sets)) {
-                sum += gameId
-            }
+            if (allSetsValid(sets)) gameId else 0
         }
-
-        return sum.toString()
     }
 
     override fun part2(): String {
-        reader.read(1).forEachLine { line ->
+        reader.file(1).forEachLine { line ->
 
         }
         return "<Not implemented>"

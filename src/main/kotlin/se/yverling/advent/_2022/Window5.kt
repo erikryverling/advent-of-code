@@ -30,7 +30,7 @@ class Window5(reader: WindowFileReader) : Window(reader, 5) {
     override fun part1(): String {
         val stacks = copyInputStack()
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             val groupValues = inputMatcher.find(line)?.groupValues
 
             // On a move row
@@ -52,7 +52,7 @@ class Window5(reader: WindowFileReader) : Window(reader, 5) {
     override fun part2(): String {
         val stacks = copyInputStack()
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             val groupValues = inputMatcher.find(line)?.groupValues
 
             // TODO Duplicates

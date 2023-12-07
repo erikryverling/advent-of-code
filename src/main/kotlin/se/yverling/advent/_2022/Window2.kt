@@ -25,7 +25,7 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
     override fun part1(): String {
         var totalScore = 0
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             val opponentMove = line[0]
             val myMove = line[2]
 
@@ -60,7 +60,7 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
             Pair('C', 'Z') to 'X'
         )
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             val opponentMove = line[0]
             val myIntention = line[2]
             val myMove = intentionToMove[Pair(opponentMove, myIntention)]

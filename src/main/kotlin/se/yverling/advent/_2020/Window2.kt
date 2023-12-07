@@ -48,7 +48,7 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
     }
 
     private fun readDatabase() {
-        reader.read().forEachLine { row ->
+        reader.file().forEachLine { row ->
             dataBase.add(row)
         }
     }

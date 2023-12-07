@@ -9,7 +9,7 @@ class Window4(reader: WindowFileReader) : Window(reader, 4) {
     override fun part1(): String {
         var fullyContains = 0
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             val groupValues = inputMatcher.find(line)?.groupValues
 
             val firstElfBounds = Pair(groupValues?.get(1)!!.toInt(), groupValues[2].toInt())
@@ -30,7 +30,7 @@ class Window4(reader: WindowFileReader) : Window(reader, 4) {
         var noOverlap = 0
         var totalLines = 0
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             totalLines++
 
             val groupValues = inputMatcher.find(line)?.groupValues

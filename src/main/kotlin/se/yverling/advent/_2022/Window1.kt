@@ -8,7 +8,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
         var maxNumberOfCalories = 0
         var currentSum = 0
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             if (line.isEmpty()) {
                 if (currentSum > maxNumberOfCalories) {
                     maxNumberOfCalories = currentSum
@@ -26,7 +26,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
         var topThreeNumberOfCalories = mutableListOf<Int>()
         var currentSum = 0
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             if (line.isEmpty()) {
                 topThreeNumberOfCalories = updateList(topThreeNumberOfCalories, currentSum)
                 currentSum = 0

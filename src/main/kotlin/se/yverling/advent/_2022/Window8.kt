@@ -16,7 +16,7 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
 
     private fun populateForrest(): MutableList<MutableList<Int>> {
         val forrest: MutableList<MutableList<Int>> = mutableListOf()
-        reader.read(1).forEachLine { line ->
+        reader.file(1).forEachLine { line ->
             val treeRow = mutableListOf<Int>()
             line.forEach { treeHeight ->
                 treeRow.add(treeHeight.digitToInt())

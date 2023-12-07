@@ -6,12 +6,12 @@ import java.util.*
 
 class Window6(reader: WindowFileReader) : Window(reader, 6) {
     override fun part1(): String {
-        val line = reader.read().readLines()[0]
+        val line = reader.file().readLines()[0]
         return (numberOfCharactersBeforeMarker(line, markerSize = 4) - 1).toString()
     }
 
     override fun part2(): String {
-        val line = reader.read().readLines()[0]
+        val line = reader.file().readLines()[0]
         return (numberOfCharactersBeforeMarker(line, markerSize = 14) - 1).toString()
     }
 

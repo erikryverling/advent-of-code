@@ -40,7 +40,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
     }
 
     private fun readExpenseReport() {
-        reader.read().forEachLine { row ->
+        reader.file().forEachLine { row ->
             expenseReport.add(row.toInt())
         }
     }

@@ -18,7 +18,7 @@ class Window7(reader: WindowFileReader) : Window(reader, 7) {
         val root = Node("/", 0)
         var currentNode: Node = root
 
-        reader.read().forEachLine { line ->
+        reader.file().forEachLine { line ->
             when {
                 fileMatcher.matches(line) -> {
                     val size = fileMatcher.find(line)?.groupValues!![1].toLong()

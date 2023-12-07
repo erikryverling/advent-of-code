@@ -4,25 +4,22 @@ import se.yverling.advent.Window
 import se.yverling.advent.WindowFileReader
 
 class Window1(reader: WindowFileReader) : Window(reader, 1) {
-    override fun part1(): String {
-        var sum = 0
-        reader.read().forEachLine { line ->
+    override fun part1(): Any {
+        return reader.readLines().sumOf { line ->
             val digits = line.filter { it.isDigit() }
-            sum += "${digits[0]}${digits[digits.lastIndex]}".toInt()
+
+            "${digits[0]}${digits[digits.lastIndex]}".toInt()
         }
-        return sum.toString()
     }
 
-    override fun part2(): String {
-        var sum = 0
-        reader.read().forEachLine { line ->
+    override fun part2(): Any {
+        return reader.readLines().sumOf { line ->
             val numericalDigits = (1..9).map { it.toString() }.toList()
             val textualDigits = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
             val digits = numericalDigits.plus(textualDigits)
 
-            sum += "${leftmostDigit(digits, line)}${rightmostDigit(digits, line)}".toInt()
+            "${leftmostDigit(digits, line)}${rightmostDigit(digits, line)}".toInt()
         }
-        return sum.toString()
     }
 
     private fun leftmostDigit(digits: List<String>, line: String): String {
