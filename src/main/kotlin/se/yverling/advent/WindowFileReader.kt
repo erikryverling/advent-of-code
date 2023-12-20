@@ -13,3 +13,10 @@ class WindowFileReader(year: Int) {
 
     fun readLines(test: Int = 0): List<String> = file(test).readLines()
 }
+
+fun File.forEachLineIndexed(action: (index: Int, line: String) -> Unit) {
+    var index = 0
+    return this.forEachLine(charset = Charsets.UTF_8) {
+        action.invoke(index++, it)
+    }
+}
