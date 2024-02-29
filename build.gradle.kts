@@ -15,7 +15,7 @@ application {
 dependencies {
     implementation(platform(libs.kotlin.bom))
     implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlin.reflection)
+    implementation(libs.kotlin.reflect)
 }
 
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
