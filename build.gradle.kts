@@ -13,7 +13,6 @@ application {
 }
 
 dependencies {
-    implementation(platform(libs.kotlin.bom))
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
 }
