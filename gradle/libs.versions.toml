@@ -1,13 +1,10 @@
 [versions]
 
 # Global
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 
 #  Plugins
 versions-plugin = "0.51.0"
-
-# Libraries
-kotlin-reflect = "1.8.22"
 
 
 [plugins]
@@ -17,4 +14,4 @@ versions = { id = "com.github.ben-manes.versions", version.ref = "versions-plugi
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin-reflect" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
