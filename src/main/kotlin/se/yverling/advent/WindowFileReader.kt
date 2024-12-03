@@ -6,12 +6,11 @@ class WindowFileReader(year: Int) {
     private val resourceFolder = "src/main/res/$year"
     var windowNumber: Int = -1
 
-    fun file(test: Int = 0): File {
-        return if (test == 1) File("$resourceFolder/window-$windowNumber-test.txt")
+    fun file(test: Int = 0): File =
+        if (test == 1) File("$resourceFolder/window-$windowNumber-test.txt")
         else File("$resourceFolder/window-$windowNumber.txt")
-    }
 
-    fun readLines(test: Int = 0): List<String> = file(test).readLines()
+    fun readLines(test: Int = 0) = file(test).readLines()
 }
 
 fun File.forEachLineIndexed(action: (index: Int, line: String) -> Unit) {
