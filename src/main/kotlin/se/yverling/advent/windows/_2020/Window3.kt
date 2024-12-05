@@ -1,12 +1,9 @@
-package se.yverling.advent._2020
+package se.yverling.advent.windows._2020
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 import kotlin.math.ceil
 
-class Window3(reader: WindowFileReader) : Window(reader, 3) {
-    private val max_number_of_steps = 7
-
+internal class Window3 : Window() {
     // Map meta data
     private var numberOfRows: Int = -1
     private var rowLength: Int = -1
@@ -14,7 +11,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
 
     private val map = mutableMapOf<Pair<Int, Int>, Char>()
 
-    init {
+    override fun setUp() {
         initMapMetaData()
         buildMap()
     }
@@ -36,7 +33,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
     private fun initMapMetaData() {
         var currentNumberOfRows = 0
 
-        reader.file().forEachLine { row ->
+        reader.forEachLine { row ->
             if (currentNumberOfRows == 0) {
                 rowLength = row.length
             }
@@ -46,12 +43,12 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
         numberOfRows = currentNumberOfRows
 
         // Round up
-        repetitions = ceil((max_number_of_steps.toFloat() * numberOfRows.toFloat()) / rowLength.toFloat()).toInt()
+        repetitions = ceil((MAX_NUMBER_OF_STEPS.toFloat() * numberOfRows.toFloat()) / rowLength.toFloat()).toInt()
     }
 
     private fun buildMap() {
         var fileRow = 0
-        reader.file().forEachLine { row ->
+        reader.forEachLine { row ->
             for (offset in 0 until rowLength * repetitions step rowLength) {
                 row.forEachIndexed { fileColumn, symbol ->
                     map[Pair(offset + fileColumn, fileRow)] = symbol
@@ -71,5 +68,9 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
             x += rightMoves
         }
         return treesEncountered
+    }
+
+    companion object {
+        const val MAX_NUMBER_OF_STEPS = 7
     }
 }

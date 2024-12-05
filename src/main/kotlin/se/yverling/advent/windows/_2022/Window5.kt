@@ -1,10 +1,9 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
-import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 import java.util.*
+import se.yverling.advent.Window
 
-class Window5(reader: WindowFileReader) : Window(reader, 5) {
+internal class Window5 : Window() {
     private val inputMatcher = Regex("move (\\d*) from (\\d) to (\\d)")
     // TODO Parse initial state of stacks? :fist:
 
@@ -30,7 +29,7 @@ class Window5(reader: WindowFileReader) : Window(reader, 5) {
     override fun part1(): String {
         val stacks = copyInputStack()
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             val groupValues = inputMatcher.find(line)?.groupValues
 
             // On a move row
@@ -52,7 +51,7 @@ class Window5(reader: WindowFileReader) : Window(reader, 5) {
     override fun part2(): String {
         val stacks = copyInputStack()
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             val groupValues = inputMatcher.find(line)?.groupValues
 
             // TODO Duplicates

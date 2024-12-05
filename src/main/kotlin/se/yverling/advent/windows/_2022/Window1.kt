@@ -1,14 +1,13 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window1(reader: WindowFileReader) : Window(reader, 1) {
+internal class Window1 : Window() {
     override fun part1(): String {
         var maxNumberOfCalories = 0
         var currentSum = 0
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             if (line.isEmpty()) {
                 if (currentSum > maxNumberOfCalories) {
                     maxNumberOfCalories = currentSum
@@ -26,7 +25,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
         var topThreeNumberOfCalories = mutableListOf<Int>()
         var currentSum = 0
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             if (line.isEmpty()) {
                 topThreeNumberOfCalories = updateList(topThreeNumberOfCalories, currentSum)
                 currentSum = 0

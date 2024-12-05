@@ -1,9 +1,8 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window2(reader: WindowFileReader) : Window(reader, 2) {
+internal class Window2 : Window() {
 
     // A / X = Rock
     // B / Y = Paper
@@ -25,7 +24,7 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
     override fun part1(): String {
         var totalScore = 0
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             val opponentMove = line[0]
             val myMove = line[2]
 
@@ -60,7 +59,7 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
             Pair('C', 'Z') to 'X'
         )
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             val opponentMove = line[0]
             val myIntention = line[2]
             val myMove = intentionToMove[Pair(opponentMove, myIntention)]

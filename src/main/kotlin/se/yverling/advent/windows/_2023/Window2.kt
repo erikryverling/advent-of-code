@@ -1,14 +1,13 @@
-package se.yverling.advent._2023
+package se.yverling.advent.windows._2023
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window2(reader: WindowFileReader) : Window(reader, 2) {
+internal class Window2 : Window() {
     private val gameMatcher = Regex("^Game (\\d+): (.*)\$")
     private val cubeMatcher = Regex("^(\\d+) (\\w+)$")
 
     override fun part1(): Any {
-        return reader.readLines().sumOf { line ->
+        return reader.sumOfLines { line ->
             val gameId = gameMatcher.find(line)!!.groupValues[1].toInt()
 
             if (allSetsValid(line.toSets())) gameId else 0
@@ -16,21 +15,10 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
     }
 
     override fun part2(): Any {
-        return reader.readLines().sumOf { line ->
+        return reader.sumOfLines { line ->
             powerOf(line.toSets())
         }
     }
-
-    private fun String.toSets(): List<String> {
-        val setsAsString = gameMatcher.find(this)!!.groupValues[2]
-        return setsAsString.split(";")
-    }
-
-    private fun String.toColor() = cubeMatcher.find(this)!!.groupValues[2]
-
-    private fun String.toNumber() = cubeMatcher.find(this)!!.groupValues[1].toInt()
-
-    private fun String.toCubes() = this.split(",")
 
     private fun allSetsValid(sets: List<String>): Boolean {
         return sets.all { set ->
@@ -77,4 +65,15 @@ class Window2(reader: WindowFileReader) : Window(reader, 2) {
         }
         return maxNumber
     }
+
+    private fun String.toSets(): List<String> {
+        val setsAsString = gameMatcher.find(this)!!.groupValues[2]
+        return setsAsString.split(";")
+    }
+
+    private fun String.toColor() = cubeMatcher.find(this)!!.groupValues[2]
+
+    private fun String.toNumber() = cubeMatcher.find(this)!!.groupValues[1].toInt()
+
+    private fun String.toCubes() = this.split(",")
 }

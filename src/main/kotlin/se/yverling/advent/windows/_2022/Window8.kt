@@ -1,10 +1,13 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window8(reader: WindowFileReader) : Window(reader, 8) {
-    private val forrest = populateForrest()
+internal class Window8 : Window() {
+    private lateinit var forrest: MutableList<MutableList<Int>>
+
+    override fun setUp() {
+        forrest = populateForrest()
+    }
 
     override fun part1(): String {
         return countVisibleTrees(forrest).toString()
@@ -16,7 +19,7 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
 
     private fun populateForrest(): MutableList<MutableList<Int>> {
         val forrest: MutableList<MutableList<Int>> = mutableListOf()
-        reader.file(1).forEachLine { line ->
+        reader.forEachLine { line ->
             val treeRow = mutableListOf<Int>()
             line.forEach { treeHeight ->
                 treeRow.add(treeHeight.digitToInt())
@@ -54,7 +57,7 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
         val rightTreePath = treeRow.subList(currentX + 1, treeRow.size)
 
         return isAllTreesShorter(leftTreePath, currentTreeHeight) ||
-            isAllTreesShorter(rightTreePath, currentTreeHeight)
+                isAllTreesShorter(rightTreePath, currentTreeHeight)
     }
 
     private fun hasClearViewInColumn(
@@ -63,19 +66,10 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
         currentY: Int,
         currentTreeHeight: Int
     ): Boolean {
-        val upperTreePath = mutableListOf<Int>()
-        val lowerTreePath = mutableListOf<Int>()
-
-        forrest.forEachIndexed { treeY, treeRow ->
-            if (treeY < currentY) {
-                upperTreePath.add(treeRow[currentX])
-            } else if (treeY > currentY) {
-                lowerTreePath.add(treeRow[currentX])
-            }
-        }
+        val (upperTreePath, lowerTreePath) = calculatePaths(forrest, currentY, currentX)
 
         return isAllTreesShorter(upperTreePath, currentTreeHeight) ||
-            isAllTreesShorter(lowerTreePath, currentTreeHeight)
+                isAllTreesShorter(lowerTreePath, currentTreeHeight)
     }
 
     private fun isAllTreesShorter(treePath: MutableList<Int>, currentTreeHeight: Int): Boolean {
@@ -89,7 +83,13 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
 
         forrest.forEachIndexed { currentY, treeRow ->
             treeRow.forEachIndexed { currentX, currentTreeHeight ->
-                val currentScenicScore = findHorizontalScenicScore(treeRow, currentX, currentTreeHeight) * findVerticalScenicScore(forrest, currentX, currentY, currentTreeHeight)
+                val currentScenicScore =
+                    findHorizontalScenicScore(treeRow, currentX, currentTreeHeight) * findVerticalScenicScore(
+                        forrest,
+                        currentX,
+                        currentY,
+                        currentTreeHeight
+                    )
                 if (currentScenicScore > bestScenicScore) bestScenicScore = currentScenicScore
             }
         }
@@ -105,7 +105,10 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
         val leftTreePath = treeRow.subList(0, currentX)
         val rightTreePath = treeRow.subList(currentX + 1, treeRow.size)
 
-        return findNumberOfVisibleTreesInTreePath(leftTreePath, currentTreeHeight) * findNumberOfVisibleTreesInTreePath(rightTreePath, currentTreeHeight)
+        return findNumberOfVisibleTreesInTreePath(leftTreePath, currentTreeHeight) * findNumberOfVisibleTreesInTreePath(
+            rightTreePath,
+            currentTreeHeight
+        )
     }
 
     private fun findVerticalScenicScore(
@@ -114,19 +117,12 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
         currentY: Int,
         currentTreeHeight: Int
     ): Int {
-        // TODO This could be extract to a function with the above
-        val upperTreePath = mutableListOf<Int>()
-        val lowerTreePath = mutableListOf<Int>()
+        val (upperTreePath, lowerTreePath) = calculatePaths(forrest, currentY, currentX)
 
-        forrest.forEachIndexed { treeY, treeRow ->
-            if (treeY < currentY) {
-                upperTreePath.add(treeRow[currentX])
-            } else if (treeY > currentY) {
-                lowerTreePath.add(treeRow[currentX])
-            }
-        }
-
-        return findNumberOfVisibleTreesInTreePath(upperTreePath, currentTreeHeight) * findNumberOfVisibleTreesInTreePath(lowerTreePath, currentTreeHeight)
+        return findNumberOfVisibleTreesInTreePath(
+            upperTreePath,
+            currentTreeHeight
+        ) * findNumberOfVisibleTreesInTreePath(lowerTreePath, currentTreeHeight)
     }
 
     private fun findNumberOfVisibleTreesInTreePath(treePath: MutableList<Int>, currentTreeHeight: Int): Int {
@@ -142,5 +138,23 @@ class Window8(reader: WindowFileReader) : Window(reader, 8) {
         }
 
         return numberOfVisibleTrees
+    }
+
+    private fun calculatePaths(
+        forrest: MutableList<MutableList<Int>>,
+        currentY: Int,
+        currentX: Int
+    ): Pair<MutableList<Int>, MutableList<Int>> {
+        val upperTreePath = mutableListOf<Int>()
+        val lowerTreePath = mutableListOf<Int>()
+
+        forrest.forEachIndexed { treeY, treeRow ->
+            if (treeY < currentY) {
+                upperTreePath.add(treeRow[currentX])
+            } else if (treeY > currentY) {
+                lowerTreePath.add(treeRow[currentX])
+            }
+        }
+        return Pair(upperTreePath, lowerTreePath)
     }
 }

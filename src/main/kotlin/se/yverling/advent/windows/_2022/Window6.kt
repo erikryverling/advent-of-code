@@ -1,10 +1,9 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
-import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 import java.util.*
+import se.yverling.advent.Window
 
-class Window6(reader: WindowFileReader) : Window(reader, 6) {
+internal class Window6 : Window() {
     override fun part1(): String {
         val line = reader.file().readLines()[0]
         return (numberOfCharactersBeforeMarker(line, markerSize = 4) - 1).toString()

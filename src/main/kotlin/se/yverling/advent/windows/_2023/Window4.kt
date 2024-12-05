@@ -1,13 +1,10 @@
-package se.yverling.advent._2023
+package se.yverling.advent.windows._2023
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
-import se.yverling.advent.forEachLineIndexed
 
-
-class Window4(reader: WindowFileReader) : Window(reader, 4) {
+internal class Window4 : Window() {
     override fun part1(): Any {
-        return reader.readLines().sumOf { line ->
+        return reader.sumOfLines { line ->
             cardValue(line)
         }
     }
@@ -15,7 +12,7 @@ class Window4(reader: WindowFileReader) : Window(reader, 4) {
     override fun part2(): Any {
         val initialCardDeck = mutableMapOf<Int, Int>()
 
-        reader.file().forEachLineIndexed { index, line ->
+        reader.forEachLineIndexed { index, line ->
             initialCardDeck[index + 1] = cardWins(line)
         }
 

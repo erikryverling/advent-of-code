@@ -1,12 +1,8 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-private const val CRT_WIDTH = 40
-private const val CRT_HEIGHT = 6
-
-class Window10(reader: WindowFileReader) : Window(reader, 10) {
+internal class Window10 : Window() {
     private val inputMatcher = Regex("^(\\w+)\\s*(-*\\d*)$")
     private var clock = 1
     private var registerX = 1
@@ -14,7 +10,7 @@ class Window10(reader: WindowFileReader) : Window(reader, 10) {
     private val pixels = mutableListOf<Char>()
 
     override fun part1(): String {
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             when (inputMatcher.find(line)?.groupValues!![1]) {
                 "addx" -> {
                     val value = inputMatcher.find(line)?.groupValues!![2].toInt()
@@ -68,5 +64,10 @@ class Window10(reader: WindowFileReader) : Window(reader, 10) {
             }
             println()
         }
+    }
+
+    companion object {
+        private const val CRT_WIDTH = 40
+        private const val CRT_HEIGHT = 6
     }
 }

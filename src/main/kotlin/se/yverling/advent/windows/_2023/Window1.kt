@@ -1,11 +1,10 @@
-package se.yverling.advent._2023
+package se.yverling.advent.windows._2023
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window1(reader: WindowFileReader) : Window(reader, 1) {
+internal class Window1 : Window() {
     override fun part1(): Any {
-        return reader.readLines().sumOf { line ->
+        return reader.sumOfLines { line ->
             val digits = line.filter { it.isDigit() }
 
             "${digits[0]}${digits[digits.lastIndex]}".toInt()
@@ -13,7 +12,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
     }
 
     override fun part2(): Any {
-        return reader.readLines().sumOf { line ->
+        return reader.sumOfLines { line ->
             val numericalDigits = (1..9).map { it.toString() }.toList()
             val textualDigits = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
             val digits = numericalDigits.plus(textualDigits)
@@ -30,7 +29,8 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
                 lowestIndex = Pair(index, digit)
             }
         }
-        return toNumericalDigit(lowestIndex.second)
+
+        return lowestIndex.second.toNumericalDigit()
     }
 
     private fun rightmostDigit(digits: List<String>, line: String): String {
@@ -41,11 +41,11 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
                 highestIndex = Pair(index, digit)
             }
         }
-        return toNumericalDigit(highestIndex.second)
+        return highestIndex.second.toNumericalDigit()
     }
 
-    private fun toNumericalDigit(digit: String): String {
-        return when (digit) {
+    private fun String.toNumericalDigit(): String {
+        return when (this) {
             "one" -> "1"
             "two" -> "2"
             "three" -> "3"
@@ -55,7 +55,7 @@ class Window1(reader: WindowFileReader) : Window(reader, 1) {
             "seven" -> "7"
             "eight" -> "8"
             "nine" -> "9"
-            else -> digit
+            else -> this
         }
     }
 }

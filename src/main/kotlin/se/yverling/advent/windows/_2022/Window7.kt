@@ -1,11 +1,10 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
 internal const val FOLDER_LIMIT = 100000
 
-class Window7(reader: WindowFileReader) : Window(reader, 7) {
+class Window7 : Window() {
     private val changeDirMatcher = Regex("^\\$ cd (\\w+|\\W+)\$")
     private val listFilesMatcher = Regex("^\\\$ ls$")
     private val fileMatcher = Regex("^(\\d+) (\\w+\\.*\\w*)$")
@@ -18,7 +17,7 @@ class Window7(reader: WindowFileReader) : Window(reader, 7) {
         val root = Node("/", 0)
         var currentNode: Node = root
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             when {
                 fileMatcher.matches(line) -> {
                     val size = fileMatcher.find(line)?.groupValues!![1].toLong()

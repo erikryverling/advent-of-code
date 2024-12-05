@@ -1,12 +1,11 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window3(reader: WindowFileReader) : Window(reader, 3) {
+internal class Window3 : Window() {
     override fun part1(): String {
         var sumOfPriorities = 0
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             val firstCompartment = (line.substring(0, (line.length / 2))).toSet()
             val secondCompartment = (line.substring((line.length / 2), line.length)).toSet()
 
@@ -25,7 +24,7 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
 
         var group = mutableListOf<Set<Char>>()
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             lineNumber++
 
             group.add(line.toSet())
@@ -44,9 +43,8 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
     }
 
     private fun priority(item: Char): Int {
-        val alphabet = "abcdefghijklmnopqrstuvwxyz"
         var priority = -1
-        val ss = alphabet.plus(alphabet.uppercase())
+        val ss = ALPHABET.plus(ALPHABET.uppercase())
         ss.forEachIndexed { index, letter ->
             if (letter == item) {
                 priority = index + 1
@@ -54,5 +52,9 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
             }
         }
         return priority
+    }
+
+    companion object {
+        const val ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     }
 }

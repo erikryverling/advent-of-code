@@ -1,15 +1,14 @@
-package se.yverling.advent._2024
+package se.yverling.advent.windows._2024
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 import kotlin.math.abs
 
-class Window1(reader: WindowFileReader) : Window(reader, 1) {
+internal class Window1 : Window() {
     private val firstList = mutableListOf<Int>()
     private val secondList = mutableListOf<Int>()
 
     override fun part1(): Int {
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             firstList.add(line.substringBefore(DELIMITER).toInt())
             secondList.add(line.substringAfter(DELIMITER).toInt())
         }

@@ -1,15 +1,17 @@
 package se.yverling.advent
 
-abstract class Window(val reader: WindowFileReader, private val windowNumber: Int) {
-    init {
-        reader.windowNumber = windowNumber
-    }
+abstract class Window {
+    var reader: WindowFileReader = WindowFileReader.EMPTY
+
+    protected open fun setUp() {}
 
     abstract fun part1(): Any
     abstract fun part2(): Any
 
     fun open() {
-        println("*** Window $windowNumber ***")
+        setUp()
+
+        println("*** Window ${reader.windowNumber} ***")
         println(part1())
         println("---")
         println(part2())

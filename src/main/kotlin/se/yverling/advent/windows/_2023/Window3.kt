@@ -1,14 +1,13 @@
-package se.yverling.advent._2023
+package se.yverling.advent.windows._2023
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window3(reader: WindowFileReader) : Window(reader, 3) {
+internal class Window3 : Window() {
     private val symbols = mutableMapOf<Pair<Int, Int>, String>()
     private val numbers = mutableListOf<List<Pair<Pair<Int, Int>, String>>>()
 
-    init {
-        initSymbolsAndNumbers(reader)
+    override fun setUp() {
+        initSymbolsAndNumbers()
     }
 
     override fun part1(): Any {
@@ -34,14 +33,14 @@ class Window3(reader: WindowFileReader) : Window(reader, 3) {
         }
     }
 
-    private fun initSymbolsAndNumbers(reader: WindowFileReader) {
+    private fun initSymbolsAndNumbers() {
         val symbolMatcher = Regex("[^.\\d]")
         val digitMatcher = Regex("\\d")
 
         var x: Int
         var y = 0
 
-        reader.file().forEachLine { line ->
+        reader.forEachLine { line ->
             x = 0
             var currentNumber = mutableListOf<Pair<Pair<Int, Int>, String>>()
             var previousCharacter = ""

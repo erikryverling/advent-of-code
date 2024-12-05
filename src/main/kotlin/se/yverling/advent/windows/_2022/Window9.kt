@@ -1,9 +1,8 @@
-package se.yverling.advent._2022
+package se.yverling.advent.windows._2022
 
 import se.yverling.advent.Window
-import se.yverling.advent.WindowFileReader
 
-class Window9(reader: WindowFileReader) : Window(reader, 9) {
+internal class Window9 : Window() {
     private val isTest = false // <-- Update this to switch between Test and Real input
 
     private val bridgeHeight = if (isTest) 21 else 58
@@ -47,7 +46,7 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
     private fun moveRope() {
         renderInitialState(isTest)
 
-        reader.file(if (isTest) 1 else 0).forEachLine { line ->
+        reader.forEachLine(if (isTest) 1 else 0) { line ->
             val direction = inputMatcher.find(line)?.groupValues!![1].toCharArray()[0]
             val steps = inputMatcher.find(line)?.groupValues!![2].toInt()
 
@@ -58,7 +57,7 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
 
                 // Iterate over the knots after the head
                 for (knotIndex in 1 until rope.size) {
-                    updateKnotPositionAccordingToItsPrecessorsPosition(knotIndex)
+                    updateKnotPositionAccordingToItsPredecessorsPosition(knotIndex)
                 }
                 saveVisitedTailPosition()
             }
@@ -88,7 +87,7 @@ class Window9(reader: WindowFileReader) : Window(reader, 9) {
         }
     }
 
-    private fun updateKnotPositionAccordingToItsPrecessorsPosition(knotIndex: Int) {
+    private fun updateKnotPositionAccordingToItsPredecessorsPosition(knotIndex: Int) {
         // Head has pulled to far away to the righter down (H1)
         if (rope[knotIndex - 1].first - rope[knotIndex].first == 2 && rope[knotIndex - 1].second - rope[knotIndex].second == 1) {
             rope[knotIndex] = Pair(rope[knotIndex].first + 1, rope[knotIndex].second + 1)
