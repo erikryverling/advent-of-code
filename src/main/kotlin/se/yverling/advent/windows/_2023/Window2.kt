@@ -1,6 +1,7 @@
 package se.yverling.advent.windows._2023
 
 import se.yverling.advent.Window
+import se.yverling.advent.utils.groupValueAsInt
 
 internal class Window2 : Window() {
     private val gameMatcher = Regex("^Game (\\d+): (.*)\$")
@@ -8,7 +9,7 @@ internal class Window2 : Window() {
 
     override fun part1(): Any {
         return reader.sumOfLines { line ->
-            val gameId = gameMatcher.find(line)!!.groupValues[1].toInt()
+            val gameId = gameMatcher.find(line)!!.groupValueAsInt(1)
 
             if (allSetsValid(line.toSets())) gameId else 0
         }
@@ -73,7 +74,7 @@ internal class Window2 : Window() {
 
     private fun String.toColor() = cubeMatcher.find(this)!!.groupValues[2]
 
-    private fun String.toNumber() = cubeMatcher.find(this)!!.groupValues[1].toInt()
+    private fun String.toNumber() = cubeMatcher.find(this)!!.groupValueAsInt(1)
 
     private fun String.toCubes() = this.split(",")
 }
