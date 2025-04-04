@@ -3,10 +3,10 @@ package se.yverling.advent
 import kotlin.reflect.full.createInstance
 
 fun main() {
-    //openCalendar(2020)
-    //openCalendar(2022)
-    //openCalendar(2023)
-    openCalendar(2024, 3)
+    openCalendar(2020)
+    openCalendar(2022)
+    openCalendar(2023)
+    openCalendar(2024)
 }
 
 private fun openCalendar(year: Int, window: Int? = null) {
