@@ -1,4 +1,4 @@
-rootProject.name = "Advent of Code"
+rootProject.name = "avent-of-code"
 
 pluginManagement {
     repositories {

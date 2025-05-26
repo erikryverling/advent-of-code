@@ -6,11 +6,9 @@ kotlin = "2.1.20"
 #  Plugins
 versions-plugin = "0.52.0"
 
-
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions-plugin" }
-
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
