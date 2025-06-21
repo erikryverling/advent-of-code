@@ -2,6 +2,7 @@ plugins {
     application
     alias(libs.plugins.kotlin)
     alias(libs.plugins.versions)
+    alias(libs.plugins.ktlint)
 }
 
 repositories {
@@ -15,6 +16,10 @@ application {
 dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
+}
+
+ktlint {
+    ignoreFailures = true
 }
 
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
