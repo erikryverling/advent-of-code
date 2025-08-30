@@ -1,11 +1,11 @@
 [versions]
 
 # Global
-kotlin = "2.1.20"
+kotlin = "2.2.10"
 
 #  Plugins
 versions-plugin = "0.52.0"
-ktlint-plugin = "12.3.0"
+ktlint-plugin = "13.1.0"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
