@@ -1,7 +1,7 @@
 [versions]
 
 # Global
-kotlin = "2.2.10"
+kotlin = "2.2.20"
 
 #  Plugins
 versions-plugin = "0.52.0"
