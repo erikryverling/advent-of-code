@@ -2,8 +2,8 @@ rootProject.name = "avent-of-code"
 
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
