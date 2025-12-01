@@ -4,12 +4,10 @@
 kotlin = "2.2.21"
 
 #  Plugins
-versions-plugin = "0.53.0"
 ktlint-plugin = "14.0.1"
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-versions = { id = "com.github.ben-manes.versions", version.ref = "versions-plugin" }
 ktlint = {id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin"}
 
 [libraries]
