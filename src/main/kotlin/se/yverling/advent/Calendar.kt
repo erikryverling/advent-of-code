@@ -7,6 +7,7 @@ fun main() {
     openCalendar(2022)
     openCalendar(2023)
     openCalendar(2024)
+    openCalendar(2025)
 }
 
 private fun openCalendar(year: Int, window: Int? = null) {
